@@ -1,11 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Settings, MoreHorizontal, LucideIcon } from 'lucide-react';
+import { Sparkles, Settings, LucideIcon } from 'lucide-react';
 
 // ---- CUSTOMIZE: Add your mobile nav items (max 5) ----
 const items: { path: string; icon: LucideIcon; label: string }[] = [
-  { path: '/', icon: LayoutDashboard, label: 'Dashboard' },
-  // Add 2-3 more key pages here
-  { path: '/more', icon: MoreHorizontal, label: 'More' },
+  { path: '/', icon: Sparkles, label: 'Generate' },
+  { path: '/settings', icon: Settings, label: 'Settings' },
 ];
 
 // Paths that count as "More" (update when adding pages)

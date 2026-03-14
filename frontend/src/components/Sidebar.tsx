@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
-  LayoutDashboard,
+  Sparkles,
   Settings,
-  LogOut,
   ChevronLeft,
   ChevronRight,
   LucideIcon,
@@ -26,7 +25,7 @@ const navGroups: NavGroup[] = [
   {
     label: '',
     items: [
-      { path: '/', icon: LayoutDashboard, label: 'Dashboard' },
+      { path: '/', icon: Sparkles, label: 'Generate' },
     ],
   },
   // Add more groups:
@@ -62,11 +61,8 @@ export default function Sidebar({ onLogout }: Props) {
         collapsed ? 'w-16' : 'w-56'
       }`}
     >
-      {/* Logo + collapse toggle */}
+      {/* Collapse toggle */}
       <div className="px-3 py-4 border-b border-border flex items-center justify-between min-h-[56px]">
-        {!collapsed && (
-          <h1 className="text-lg font-bold text-accent tracking-tight">App</h1>
-        )}
         <button
           onClick={() => setCollapsed(!collapsed)}
           className="p-1.5 rounded-md text-text-secondary hover:text-text-primary hover:bg-bg-card transition-colors"
@@ -132,16 +128,6 @@ export default function Sidebar({ onLogout }: Props) {
         >
           <Settings size={18} strokeWidth={pathname === '/settings' ? 2.5 : 1.5} />
           {!collapsed && <span>Settings</span>}
-        </button>
-        <button
-          onClick={onLogout}
-          title={collapsed ? 'Logout' : undefined}
-          className={`w-full flex items-center gap-2.5 rounded-lg text-sm font-medium text-text-secondary hover:text-red-400 hover:bg-bg-card transition-colors ${
-            collapsed ? 'justify-center px-0 py-2.5' : 'px-2.5 py-2'
-          }`}
-        >
-          <LogOut size={18} strokeWidth={1.5} />
-          {!collapsed && <span>Logout</span>}
         </button>
       </div>
     </aside>

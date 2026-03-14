@@ -1,32 +1,18 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import './i18n';
 import App from './App';
 import './index.css';
 
-const clerkEnabled = !!import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+// Runtime basename: /mylogo on subpath, empty on domain
+const slug = '/mylogo';
+const basename = window.location.pathname.startsWith(slug) ? slug : '';
 
-function Root() {
-  if (clerkEnabled) {
-    const { ClerkProvider } = require('@clerk/clerk-react');
-    return (
-      <StrictMode>
-        <ClerkProvider publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </ClerkProvider>
-      </StrictMode>
-    );
-  }
-
-  return (
-    <StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </StrictMode>
-  );
-}
-
-createRoot(document.getElementById('root')!).render(<Root />);
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <BrowserRouter basename={basename}>
+      <App />
+    </BrowserRouter>
+  </StrictMode>
+);

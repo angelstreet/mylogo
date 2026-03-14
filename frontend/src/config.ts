@@ -1,3 +1,3 @@
-const basePath = (import.meta.env.VITE_BASE_PATH || '/').replace(/\/$/, '');
-export const API = `${basePath}/api`;
-export const BASE_PATH = basePath;
+const slug = '/mylogo';
+export const BASE_PATH = window.location.pathname.startsWith(slug) ? slug : '';
+export const API = `${BASE_PATH}/api`;

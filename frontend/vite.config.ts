@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
 export default defineConfig({
-  base: process.env.VITE_BASE_PATH || "/",
+  base: "/mylogo/",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
@@ -14,6 +14,15 @@ export default defineConfig({
   server: {
     port: 3003,
     host: true,
-    allowedHosts: ["angelstreet.io"],
+    allowedHosts: true,
+    proxy: {
+      "/mylogo/api": {
+        target: "http://localhost:5003",
+        rewrite: (path) => path.replace(/^\/mylogo/, ""),
+      },
+      "/api": {
+        target: "http://localhost:5003",
+      },
+    },
   },
 });

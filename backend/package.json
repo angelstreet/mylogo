@@ -6,17 +6,21 @@
     "start": "tsx src/index.ts"
   },
   "dependencies": {
-    "hono": "^4.7.0",
-    "@libsql/client": "^0.14.0",
     "@hono/node-server": "^1.13.0",
-    "dotenv": "^16.4.0"
+    "@libsql/client": "^0.14.0",
+    "better-sqlite3": "^12.8.0",
+    "dotenv": "^16.4.0",
+    "hono": "^4.7.0",
+    "imagetracerjs": "^1.2.6",
+    "sharp": "^0.34.5"
   },
   "optionalDependencies": {
     "@clerk/backend": "^1.0.0"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22.0.0",
     "tsx": "^4.19.0",
-    "typescript": "^5.7.0",
-    "@types/node": "^22.0.0"
+    "typescript": "^5.7.0"
   }
 }
