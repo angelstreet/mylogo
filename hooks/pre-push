@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# Pre-push hook: mirror Vercel's exact build command
+# Prevents broken deploys by running the same checks locally
+
+set -e  # Exit on any error
+
+echo "🔨 Pre-push build check..."
+
+# Find vercel.json (root or frontend/)
+VERCEL_JSON=""
+if [ -f "vercel.json" ]; then
+  VERCEL_JSON="vercel.json"
+elif [ -f "frontend/vercel.json" ]; then
+  VERCEL_JSON="frontend/vercel.json"
+fi
+
+if [ -z "$VERCEL_JSON" ]; then
+  echo "⚠️  No vercel.json found — skipping build check"
+  exit 0
+fi
+
+# Extract buildCommand from vercel.json
+BUILD_CMD=$(jq -r '.buildCommand // empty' "$VERCEL_JSON")
+
+if [ -z "$BUILD_CMD" ]; then
+  # Fallback: try generic build in frontend/ if it exists
+  if [ -d "frontend" ] && [ -f "frontend/package.json" ]; then
+    BUILD_CMD="cd frontend && npm run build"
+  else
+    BUILD_CMD="npm run build"
+  fi
+fi
+
+echo "📦 Running: $BUILD_CMD"
+
+# Run the exact Vercel build command
+if eval "$BUILD_CMD"; then
+  echo "✅ Build passed — safe to push"
+  exit 0
+else
+  echo ""
+  echo "❌ Build failed — push blocked"
+  echo "   Fix errors, then try again."
+  echo ""
+  exit 1
+fi
