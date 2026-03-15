@@ -126,8 +126,8 @@ export default function Generator() {
     <div className="py-4 max-w-2xl mx-auto space-y-4">
       <div className="flex flex-col items-center mb-6">
         <div className="flex items-center gap-0">
-          <img src={logoImg} alt="MyLogo" className="h-14 w-auto relative top-[5px]" />
-          <h1 className="text-3xl font-bold text-gold">Logo</h1>
+          <img src={logoImg} alt="MyLogo" className="h-18 w-auto relative top-[6px]" />
+          <h1 className="text-4xl font-bold text-gold">Logo</h1>
         </div>
         <p className="text-text-secondary text-sm mt-4">{t('tagline')}</p>
         {!apiKey && (
