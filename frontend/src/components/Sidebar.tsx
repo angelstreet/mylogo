@@ -63,6 +63,7 @@ export default function Sidebar({ onLogout }: Props) {
     >
       {/* Collapse toggle */}
       <div className="px-3 py-4 border-b border-border flex items-center justify-between min-h-[56px]">
+        <img src="/mylogo/logo.png" alt="MyLogo" className="h-8 w-auto" />
         <button
           onClick={() => setCollapsed(!collapsed)}
           className="p-1.5 rounded-md text-text-secondary hover:text-text-primary hover:bg-bg-card transition-colors"
